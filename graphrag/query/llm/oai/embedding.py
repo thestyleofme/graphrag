@@ -8,6 +8,7 @@ from collections.abc import Callable
 from typing import Any
 
 import numpy as np
+import ollama
 import tiktoken
 from tenacity import (
     AsyncRetrying,
@@ -82,7 +83,10 @@ class OpenAIEmbedding(BaseTextEmbedding, OpenAILLMImpl):
         chunk_lens = []
         for chunk in token_chunks:
             try:
-                embedding, chunk_len = self._embed_with_retry(chunk, **kwargs)
+                # embedding, chunk_len = self._embed_with_retry(chunk, **kwargs)
+                embedding = ollama.embeddings(model="nomic-embed-text", prompt=chunk)['embedding']
+                chunk_len = len(chunk)
+
                 chunk_embeddings.append(embedding)
                 chunk_lens.append(chunk_len)
             # TODO: catch a more specific exception

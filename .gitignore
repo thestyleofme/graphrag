@@ -55,6 +55,7 @@ build.zip
 __pycache__
 
 .pipeline
+.pipelines
 
 # Azurite
 temp_azurite/
@@ -65,5 +66,6 @@ __blobstorage__/
 # Getting started example
 ragtest/
 .ragtest/
-.pipelines
-.pipeline
+
+/graph-rag/cache/
+!indexing-engine.log

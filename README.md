@@ -1,3 +1,7 @@
+# GraphRAG TEST CASE
+
+👉 [ollama本地部署graph rag服务](graph-rag/README.md) <br/>
+
 # GraphRAG
 
 👉 [Use the GraphRAG Accelerator solution](https://github.com/Azure-Samples/graphrag-accelerator) <br/>
