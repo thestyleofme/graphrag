@@ -10,6 +10,7 @@ from typing import Any
 
 import tiktoken
 
+from graphrag.index.progress import PrintProgressReporter
 from graphrag.query.context_builder.builders import LocalContextBuilder
 from graphrag.query.context_builder.conversation_history import (
     ConversationHistory,
@@ -27,6 +28,7 @@ DEFAULT_LLM_PARAMS = {
 }
 
 log = logging.getLogger(__name__)
+reporter = PrintProgressReporter("")
 
 
 class LocalSearch(BaseSearch):
@@ -79,7 +81,7 @@ class LocalSearch(BaseSearch):
                 {"role": "system", "content": search_prompt},
                 {"role": "user", "content": query},
             ]
-
+            reporter.success(f"Local Search Prompt:\n{search_messages}")
             response = await self.llm.agenerate(
                 messages=search_messages,
                 streaming=True,

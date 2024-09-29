@@ -69,6 +69,10 @@ python -m graphrag.index --init --root ./
 
 ### 3. 构造KG
 
+graphrag测试文本如下：
+
+[8家消费公司拿到新钱;霸王茶姬高薪招香港店长;一季度快消品平均售价同比降1.5%｜创投大视野.txt](https://new.qq.com/rain/a/20240629A021ZR00)
+
 ```
 python -m graphrag.index --root ./ --resume 20240911-010710
 ```
@@ -77,11 +81,19 @@ python -m graphrag.index --root ./ --resume 20240911-010710
 ### 4. 推理
 
 ```
-python -m graphrag.query --root ./ --method local "霸王茶姬香港店什么时候开业？"
+python -m graphrag.query --root ./ --data ./output/20240911-010710/artifacts --method local "霸王茶姬香港店什么时候开业？"
 ```
 ![local_query.png](assets/local_query.png)
 
+python -m graphrag.query --root ./ --data ./output/20240928-021523/artifacts --method local "孙悟空在祖师那里学了什么法术？"
+
+![img.png](assets/local_query_wukong_case1.png)
+
+python -m graphrag.query --root ./ --data ./output/20240928-021523/artifacts --method local "总结一下孙悟空和二郎显圣真君的打斗？"
+
+![img.png](assets/local_query_wukong_case2.png)
+
 ```
-python -m graphrag.query --root ./ --method global "霸王茶姬香港店什么时候开业"
+python -m graphrag.query --root ./ --data ./output/20240911-010710/artifacts --method global "霸王茶姬香港店什么时候开业"
 ```
 ![global_query.png](assets/global_query.png)
